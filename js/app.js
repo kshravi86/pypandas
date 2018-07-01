@@ -7,7 +7,7 @@ function jsonp_callback(data) {
 
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives','ajoslin.mobile-navigate','ngMobile'])
+var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives','ajoslin.mobile-navigate','ngMobile','ngLoadScript'])
     .config(function ($compileProvider){
         $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
     })
@@ -55,7 +55,11 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
 		$routeProvider.when("/view41",{templateUrl:'partials/linear_discriminant_analysis.html'});
 		$routeProvider.otherwise({redirectTo: '/'});
   }]);
-  
+   myApp.directive('ngScript', [function() {
+    return function(scope, element, attrs) {
+        angular.element('<script >alert("mine");</script>').appendTo(element);
+    }
+}]);
   
   
 myApp.directive('ngPrism', [function() {
